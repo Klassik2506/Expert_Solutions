@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="1" failures="1" skipped="0" tests="3" time="30.486" timestamp="2025-08-02T19:21:37.580979+04:00" hostname="Klassik"><testcase classname="test_sett" name="test_header_text" time="0.000"><error message="failed on setup with &quot;file C:\Users\Klassik\PycharmProjects\PythonProject_Expert Solutions\test_sett.py, line 6&#10;  def test_header_text(browser):&#10;E       fixture 'browser' not found&#10;&gt;       available fixtures: cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, cov, doctest_namespace, monkeypatch, no_cover, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, testrun_uid, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory, worker_id&#10;&gt;       use 'pytest --fixtures [testpath]' for help on them.&#10;&#10;C:\Users\Klassik\PycharmProjects\PythonProject_Expert Solutions\test_sett.py:6&quot;">file C:\Users\Klassik\PycharmProjects\PythonProject_Expert Solutions\test_sett.py, line 6
+  def test_header_text(browser):
+E       fixture 'browser' not found
+&gt;       available fixtures: cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, cov, doctest_namespace, monkeypatch, no_cover, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, testrun_uid, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory, worker_id
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\Klassik\PycharmProjects\PythonProject_Expert Solutions\test_sett.py:6</error></testcase><testcase classname="test_start" name="test_open" time="24.189" /><testcase classname="test_start" name="test_header_text" time="5.577"><failure message="selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//div[@class=&quot;text q-my-auto q-ml-md&quot;][1]&quot;}&#10;  (Session info: chrome=138.0.7204.184); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception&#10;Stacktrace:&#10;&#09;GetHandleVerifier [0x0x7ff7d260e415+77285]&#10;&#09;GetHandleVerifier [0x0x7ff7d260e470+77376]&#10;&#09;(No symbol) [0x0x7ff7d23d9a6a]&#10;&#09;(No symbol) [0x0x7ff7d2430406]&#10;&#09;(No symbol) [0x0x7ff7d24306bc]&#10;&#09;(No symbol) [0x0x7ff7d2483ac7]&#10;&#09;(No symbol) [0x0x7ff7d245864f]&#10;&#09;(No symbol) [0x0x7ff7d248087f]&#10;&#09;(No symbol) [0x0x7ff7d24583e3]&#10;&#09;(No symbol) [0x0x7ff7d2421521]&#10;&#09;(No symbol) [0x0x7ff7d24222b3]&#10;&#09;GetHandleVerifier [0x0x7ff7d28f1efd+3107021]&#10;&#09;GetHandleVerifier [0x0x7ff7d28ec29d+3083373]&#10;&#09;GetHandleVerifier [0x0x7ff7d290bedd+3213485]&#10;&#09;GetHandleVerifier [0x0x7ff7d262884e+184862]&#10;&#09;GetHandleVerifier [0x0x7ff7d263055f+216879]&#10;&#09;GetHandleVerifier [0x0x7ff7d2617084+113236]&#10;&#09;GetHandleVerifier [0x0x7ff7d2617239+113673]&#10;&#09;GetHandleVerifier [0x0x7ff7d25fe298+11368]&#10;&#09;BaseThreadInitThunk [0x0x7fffcdf4e8d7+23]&#10;&#09;RtlUserThreadStart [0x0x7fffcf05c34c+44]">browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="64895cfa8befa153d1f2045a87e32f6a")&gt;
+
+    def test_header_text(browser):
+        browser.get("https://10.10.105.153:97")
+&gt;       elem.text = browser.find_element(By.XPATH, '//div[@class="text q-my-auto q-ml-md"][1]')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test_start.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py:922: in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py:454: in execute
+    self.error_handler.check_response(response)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x0000017B8DA60B90&gt;
+response = {'status': 404, 'value': '{"value":{"error":"no such element","message":"no such element: Unable to locate element: {\...ff7d25fe298+11368]\\n\\tBaseThreadInitThunk [0x0x7fffcdf4e8d7+23]\\n\\tRtlUserThreadStart [0x0x7fffcf05c34c+44]\\n"}}'}
+
+    def check_response(self, response: dict[str, Any]) -&gt; None:
+        """Checks that a JSON response from the WebDriver does not have an
+        error.
+    
+        :Args:
+         - response - The JSON response from the WebDriver server as a dictionary
+           object.
+    
+        :Raises: If the response contains an error message.
+        """
+        status = response.get("status", None)
+        if not status or status == ErrorCode.SUCCESS:
+            return
+        value = None
+        message = response.get("message", "")
+        screen: str = response.get("screen", "")
+        stacktrace = None
+        if isinstance(status, int):
+            value_json = response.get("value", None)
+            if value_json and isinstance(value_json, str):
+                try:
+                    value = json.loads(value_json)
+                    if isinstance(value, dict):
+                        if len(value) == 1:
+                            value = value["value"]
+                        status = value.get("error", None)
+                        if not status:
+                            status = value.get("status", ErrorCode.UNKNOWN_ERROR)
+                            message = value.get("value") or value.get("message")
+                            if not isinstance(message, str):
+                                value = message
+                                message = message.get("message")
+                        else:
+                            message = value.get("message", None)
+                except ValueError:
+                    pass
+    
+        exception_class: type[WebDriverException]
+        e = ErrorCode()
+        error_codes = [item for item in dir(e) if not item.startswith("__")]
+        for error_code in error_codes:
+            error_info = getattr(ErrorCode, error_code)
+            if isinstance(error_info, list) and status in error_info:
+                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)
+                break
+        else:
+            exception_class = WebDriverException
+    
+        if not value:
+            value = response["value"]
+        if isinstance(value, str):
+            raise exception_class(value)
+        if message == "" and "message" in value:
+            message = value["message"]
+    
+        screen = None  # type: ignore[assignment]
+        if "screen" in value:
+            screen = value["screen"]
+    
+        stacktrace = None
+        st_value = value.get("stackTrace") or value.get("stacktrace")
+        if st_value:
+            if isinstance(st_value, str):
+                stacktrace = st_value.split("\n")
+            else:
+                stacktrace = []
+                try:
+                    for frame in st_value:
+                        line = frame.get("lineNumber", "")
+                        file = frame.get("fileName", "&lt;anonymous&gt;")
+                        if line:
+                            file = f"{file}:{line}"
+                        meth = frame.get("methodName", "&lt;anonymous&gt;")
+                        if "className" in frame:
+                            meth = f"{frame['className']}.{meth}"
+                        msg = "    at %s (%s)"
+                        msg = msg % (meth, file)
+                        stacktrace.append(msg)
+                except TypeError:
+                    pass
+        if exception_class == UnexpectedAlertPresentException:
+            alert_text = None
+            if "data" in value:
+                alert_text = value["data"].get("text")
+            elif "alert" in value:
+                alert_text = value["alert"].get("text")
+            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here
+&gt;       raise exception_class(message, screen, stacktrace)
+E       selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class="text q-my-auto q-ml-md"][1]"}
+E         (Session info: chrome=138.0.7204.184); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+E       Stacktrace:
+E       	GetHandleVerifier [0x0x7ff7d260e415+77285]
+E       	GetHandleVerifier [0x0x7ff7d260e470+77376]
+E       	(No symbol) [0x0x7ff7d23d9a6a]
+E       	(No symbol) [0x0x7ff7d2430406]
+E       	(No symbol) [0x0x7ff7d24306bc]
+E       	(No symbol) [0x0x7ff7d2483ac7]
+E       	(No symbol) [0x0x7ff7d245864f]
+E       	(No symbol) [0x0x7ff7d248087f]
+E       	(No symbol) [0x0x7ff7d24583e3]
+E       	(No symbol) [0x0x7ff7d2421521]
+E       	(No symbol) [0x0x7ff7d24222b3]
+E       	GetHandleVerifier [0x0x7ff7d28f1efd+3107021]
+E       	GetHandleVerifier [0x0x7ff7d28ec29d+3083373]
+E       	GetHandleVerifier [0x0x7ff7d290bedd+3213485]
+E       	GetHandleVerifier [0x0x7ff7d262884e+184862]
+E       	GetHandleVerifier [0x0x7ff7d263055f+216879]
+E       	GetHandleVerifier [0x0x7ff7d2617084+113236]
+E       	GetHandleVerifier [0x0x7ff7d2617239+113673]
+E       	GetHandleVerifier [0x0x7ff7d25fe298+11368]
+E       	BaseThreadInitThunk [0x0x7fffcdf4e8d7+23]
+E       	RtlUserThreadStart [0x0x7fffcf05c34c+44]
+
+.venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py:232: NoSuchElementException</failure></testcase></testsuite></testsuites>
